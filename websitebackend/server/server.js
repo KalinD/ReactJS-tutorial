@@ -1,5 +1,6 @@
 'use strict';
 
+const { Role } = require('loopback');
 const loopback = require('loopback');
 const boot = require('loopback-boot');
 
@@ -66,4 +67,27 @@ app.models.user.afterRemote('create', (context, user, next) => {
     }
   });
   next();
+});
+
+app.models.Role.find({ where: { name: 'admin' } }, (error, role) => {
+  if (!error && role) {
+    if (role.length === 0) {
+      app.models.Role.create({
+        name: 'admin',
+      }, (err, res) => {
+        if (!err && res) {
+          app.models.user.findOne((usererror, user) => {
+            if (!usererror && user) {
+              res.principals.create({
+                principleType: app.models.RoleMapping.USER,
+                principleId: user.id,
+              }, (e, principle) => {
+                console.log("Created principal", e, principle);
+              });
+            }
+          });          
+        }
+      });
+    }
+  }
 });
