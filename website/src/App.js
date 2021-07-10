@@ -14,9 +14,7 @@ function App() {
       <Route
         path="/admin"
         render={props => (
-          <PageWrapper>
             <Login />
-          </PageWrapper>
         )} />
       <Route
         exact={true}
