@@ -22,7 +22,7 @@ class Login extends Component {
                         <div className="row">
                             <form onSubmit={e => {
                                 e.preventDefault();
-                                this.props.login(this.props.values.email, this.props.values.passwword);
+                                this.props.login(this.props.values.email, this.props.values.password);
                             }}>
                             {fields.map((f, i) => {
                                 return (
