@@ -14,7 +14,9 @@ function App() {
       <Route
         path="/admin"
         render={props => (
+          <AdminWrapper>
             <Login />
+          </AdminWrapper>
         )} />
       <Route
         exact={true}
