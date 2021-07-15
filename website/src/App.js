@@ -7,6 +7,7 @@ import Home from './components/Pages/Home';
 import About from './components/Pages/About';
 import Contact from './components/Pages/Contact';
 import AdminWrapper from './components/AdminWrapper';
+import LoginWrapper from './components/LoginWrapper';
 import Login from './components/Pages/Login';
 import Dashboard from './components/Pages/Dashboard';
 import { Component } from 'react';
@@ -19,13 +20,18 @@ class App extends Component {
           path="/admin"
           render={props => {
             return (
-              <AdminWrapper>
-                {this.props.auth.token ?
-                  <Dashboard />
-                  :
-                  <Login />
+              <div>
+                {
+                  this.props.auth.token ?
+                    <AdminWrapper>
+                      <Dashboard />
+                    </AdminWrapper>
+                    :
+                    <LoginWrapper>
+                      <Login />
+                    </LoginWrapper>
                 }
-              </AdminWrapper>
+              </div>
             )
           }} />
         <Route
