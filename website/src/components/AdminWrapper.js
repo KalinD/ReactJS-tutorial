@@ -19,6 +19,9 @@ import Divider from '@material-ui/core/Divider';
 
 const drawerWidth = 240;
 const styles = theme => ({
+    root: {
+        display: 'flex'
+    },
     toolbar: {
         paddingRight: 24
     },
@@ -37,6 +40,7 @@ const styles = theme => ({
             duration: theme.transitions.duration.enteringScreen,
         })
     },
+    appBarSpacer: theme.mixins.toolbar,
     drawerPaper: {
         position: 'relative',
         whiteSPace: 'noWrap',
@@ -60,6 +64,12 @@ const styles = theme => ({
         justifyContent: 'flex-end',
         padding: '0 8px',
         ...theme.mixins.toolbar
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing * 3,
+        height: '100vh',
+        overflow: 'auto',
     }
 });
 
@@ -83,7 +93,7 @@ class AdminWrapper extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div id="admin-page">
+            <div id="admin-page" className={classes.root}>
                 <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
                     <Toolbar className={classes.toolbar}>
                         <IconButton onClick={this.handleDrawerOpen}>
@@ -110,7 +120,10 @@ class AdminWrapper extends Component {
                     <Divider />
                     <Sidebar />
                 </Drawer>
-                {this.props.children}
+                <main className={classes.content}>
+                    <div className={ classes.appBarSpacer} />
+                    {this.props.children}
+                </main>
             </div>
         )
     }
