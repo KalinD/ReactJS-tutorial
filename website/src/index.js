@@ -1,18 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals'
-import { createStore, applyMiddleware } from 'redux';
-import rootReduced from './store/reducers';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import reportWebVitals from './reportWebVitals';
 
-const store = createStore(rootReduced, applyMiddleware(thunk));
+import configureStore from './store/configureStore';
+import { PersistGate } from 'redux-persist/integration/react';
+
+const { store, persistor } = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );
