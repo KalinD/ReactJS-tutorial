@@ -7,7 +7,18 @@ const API = {
         console.log("email: ", email, "\npassword: ", pass);
         axios.post(`${HOST}/api/users/login`, { email: email, password: pass })
             .then(res => {
-                console.log("Received a reponse: ", res);
+                success(res);
+            });
+    },
+    getUsers: (token, success) => {
+        axios.get(`${HOST}/api/users?access_token=${token}`)
+            .then(res => {
+                success(res);
+            });
+    },
+    getPosts: (token, success) => {
+        axios.get(`${HOST}/api/Posts?access_token=${token}`)
+            .then(res => {
                 success(res);
             });
     }
