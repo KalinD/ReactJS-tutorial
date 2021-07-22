@@ -17,7 +17,6 @@ class TableView extends Component {
                         <TableRow>
                             {columns ?
                                 columns.map((col, i) => {
-                                    console.log("Column: ", col, i);
                                     return <TableCell key={i}>{col.label}</TableCell>
                                 })
                                 : null}
@@ -26,7 +25,6 @@ class TableView extends Component {
                     <TableBody>
                         {rows ?
                             rows.map((row, i) => {
-                                console.log("there is a row");
                                 return columns.map((col, colIndex) => {
                                     return (
                                         <TableCell key={i}>
