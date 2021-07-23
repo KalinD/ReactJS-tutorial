@@ -6,7 +6,6 @@ import * as AdminActions from '../../../store/actions/adminActions';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link as RouterLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
 
 const columns = [
     { label: 'ID', name: 'id' },

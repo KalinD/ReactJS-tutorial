@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
@@ -25,13 +24,19 @@ class TableView extends Component {
                     <TableBody>
                         {rows ?
                             rows.map((row, i) => {
-                                return columns.map((col, colIndex) => {
-                                    return (
-                                        <TableCell key={i}>
-                                            {row[col.name]}
-                                        </TableCell>
-                                    )
-                                })
+                                return (
+                                    <TableRow>
+                                        {
+                                            columns.map((col, colIndex) => {
+                                                return (
+                                                    <TableCell key={i}>
+                                                        {row[col.name]}
+                                                    </TableCell>
+                                                )
+                                            })}
+                                    </TableRow>
+                                )
+
                             })
                             : null}
                     </TableBody>
